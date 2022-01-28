@@ -1,0 +1,43 @@
+a {
+    display: inline-block; 
+    height: 50px;
+}
+
+/* #1 linear-gradient */
+body {
+    background: repeating-linear-gradient(45deg, #7fffd4 10%, #f0ffff 30%, #7fffd4 30%);
+}
+
+/* #2 links contain htmlweb */
+a[href*=htmlweb] {
+    color: rgb(138, 43, 226);
+}
+
+/* #3 redial gradient for first children links that contain htmlweb */
+div a[href*=htmlweb]:first-child {
+    background: radial-gradient(at bottom center, rgb(0, 128, 58), rgb(255, 123, 0));
+}
+
+a[href$=css] {
+    border: 10px solid transparent;
+}
+/* #4 border hover for parent link that ends with css (unfortunately, without parent selector)*/
+a[href$=css]:hover {
+    border-top: 10px solid rgb(126, 2, 2);
+    border-left: 10px solid rgb(126, 0, 0);
+    border-bottom: 10px solid rgb(255, 0, 0);
+    border-right: 10px solid rgb(255, 0, 0);
+    border-radius: 0px 50px;
+}
+
+/* #5 color after visit sibling links */
+a ~ a:visited {
+    color: rgb(255, 255, 0);
+}  
+
+/* #6 changes after selection last children links */
+a:last-child::selection {
+    font-weight: bold;
+    color: rgb(255, 0, 0);
+    background: rgb(0, 128, 58);
+}
