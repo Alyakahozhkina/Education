@@ -1,1 +1,1 @@
-# NixEducation
+# Education
