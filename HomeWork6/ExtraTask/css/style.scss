@@ -1,0 +1,60 @@
+.first-task {
+    position: relative;
+    margin-bottom: 20px;
+    .block {
+        height: 100px;
+        width: 100px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #8f287e;
+        cursor: pointer;
+    }
+    .stop-block {
+        margin: 120px 0 0 0;
+        padding: 10px;
+        background-color: #285f8f;
+        border: #285f8f;
+        cursor: pointer;
+        border-radius: 20px;
+        color: white;
+    }
+}
+
+
+.second-task {
+    margin-bottom: 20px;
+    .block {
+        padding: 10px 0;
+        &.hidden {
+            opacity: 0;
+        }
+    }
+    .toggle-link {
+        color: #319731;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .toggle-block
+        {
+            &:hover {
+            color: #319731;
+            text-decoration: underline;
+        } 
+    }
+}
+
+.remove-click {
+    padding: 10px;
+    background-color: #8f2828;
+    border: #8f2828;;
+    cursor: pointer;
+    border-radius: 20px;
+    color: white;
+}
+
+.date {
+    padding: 10px 0 ;
+}

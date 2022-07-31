@@ -1,0 +1,64 @@
+.first-task {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.first-task .block {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #8f287e;
+  cursor: pointer;
+}
+
+.first-task .stop-block {
+  margin: 120px 0 0 0;
+  padding: 10px;
+  background-color: #285f8f;
+  border: #285f8f;
+  cursor: pointer;
+  border-radius: 20px;
+  color: white;
+}
+
+.second-task {
+  margin-bottom: 20px;
+}
+
+.second-task .block {
+  padding: 10px 0;
+}
+
+.second-task .block.hidden {
+  opacity: 0;
+}
+
+.second-task .toggle-link {
+  color: #319731;
+  text-decoration: none;
+}
+
+.second-task .toggle-link:hover {
+  text-decoration: underline;
+}
+
+.second-task .toggle-block:hover {
+  color: #319731;
+  text-decoration: underline;
+}
+
+.remove-click {
+  padding: 10px;
+  background-color: #8f2828;
+  border: #8f2828;
+  cursor: pointer;
+  border-radius: 20px;
+  color: white;
+}
+
+.date {
+  padding: 10px 0;
+}
+/*# sourceMappingURL=style.css.map */
