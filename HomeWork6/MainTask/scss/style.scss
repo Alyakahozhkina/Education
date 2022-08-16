@@ -1,0 +1,458 @@
+/* font-family: 'merriweatherbold';
+font-family: 'merriweatherbold_italic';
+font-family: 'merriweatherregular'; */
+
+$maxWidth: 1920;
+$maxWidthContainer: 1140;
+
+@mixin adaptiv-font($pcSize, $mobSize) {
+  $addSize: $pcSize - $mobSize;
+  $addMobSize: $addSize + $addSize * 0.7;
+  @media (max-width: 767px) {
+    font-size: calc(#{$mobSize + px} + #{$addMobSize} * ((100vw - 320px) / #{$maxWidthContainer}));
+  }
+  @media (min-width: 767px) {
+    font-size: calc(#{$mobSize + px} + #{$addSize} * (100vw / #{$maxWidthContainer}));
+  }
+}
+
+@mixin adaptiv-value($property, $startSize, $minSize, $type) {
+  $addSize: $startSize - $minSize;
+  @if $type==1 {
+    //Меньше контейнера
+    #{$property}: $startSize + px;
+    @media (max-width: #{$maxWidthContainer + px}) {
+      #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer -320}));
+    }
+  } @else if $type==2 {
+    //Больше контейнера
+    #{$property}: $startSize + px;
+    @media (min-width: #{$maxWidthContainer + px}) {
+      #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth -320}));
+    }
+  } @else {
+    //Всегда
+    #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth -320}));
+  }
+}
+
+//COMMON STYLES
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+html {
+  scroll-behavior: smooth;
+}
+body, html {
+  height: 100%;
+}
+body {
+  font-family: 'merriweatherregular';
+  @include adaptiv-font(22, 16);
+}
+.for__page {
+  min-height: 100%;
+  position: relative;
+}
+.page {
+  @include adaptiv-value("padding-bottom", 120, 90, 0);
+}
+.footer {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: rgb(221, 221, 221);
+  transition: all 0.3s;
+  @include adaptiv-value("height", 120, 90, 0);
+  &__text {
+    @include adaptiv-font(22, 16);
+    @include adaptiv-value("padding-top", 25, 15, 0);
+  }
+}
+img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+}
+a {
+  transition: all 0.5s;
+  &:hover {
+    text-decoration: none;
+  }
+}
+.title, .goals, .todo-list, .profile {
+  background-color: rgb(240, 240, 240);
+  transition: all 0.3s;
+}
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  @include adaptiv-font(20, 18);
+  border: none;
+  outline: none;
+  background-color: rgb(0, 70, 161);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  padding: 12px 10px 4px 10px;
+  transition: all 0.5s;
+  &:hover {
+    background-color: #555;
+  }
+}
+
+//PROGRESS BAR
+.progressBar-box {
+  height: 40px;
+  border-radius: 10px;
+  background: #000;
+  margin: 0px 16px 0px 16px;
+  
+}
+.progressBar-scroll {
+  text-align: right;
+  background: linear-gradient(to right, #4b7bb9, rgb(40, 95, 169));
+  border-radius: 10px; 
+  height: 100%;
+  text-align: center;
+  color: aliceblue;
+}
+//PROGRESS BAR
+
+//DARK MODE STYLES
+body {
+  &.dark-mode {
+    .header, .footer, .aside {
+      background-color: rgb(33,36,51);
+      transition: all 0.3s;
+    }
+    .footer, .light-mode-img, .bi-envelope, .bi-bell-fill, .profile label {
+      color: aliceblue;
+    }
+    .title, .goals, .todo-list, .profile {
+      background-color: rgb(57, 59, 73);
+      color: aliceblue;
+      transition: all 0.3s;
+    }
+    .goals__item, .form-check, .blocks__body {
+      background-color: rgb(76, 81, 102);
+      transition: all 0.3s;
+    }
+    .blocks__title {
+      background-color: rgb(42,45,62);
+      color: aliceblue;
+      transition: all 0.3s;
+    }
+    .form-check-label {
+      p {
+        :first-child {
+          color: rgb(215, 221, 251);
+          transition: all 0.3s;
+        }
+      }
+    }
+    .progressBar-box {
+      background: rgb(76, 81, 102);
+    }
+    .goals {
+      .row {
+        > :nth-child(1) {
+          .goals__title {
+            color: rgb(181, 181, 255);
+          }
+        }
+        > :nth-child(2) {
+          .goals__title {
+            color: rgb(106, 167, 106);
+          }
+        }
+        > :nth-child(3) {
+          .goals__title {
+            color: rgb(105, 182, 182);
+          }
+        }
+        > :nth-child(4) {
+          .goals__title {
+            color: rgb(205, 161, 80);
+          }
+        }
+      }
+    }
+    .dark-mode-img {
+      display: none;
+    }
+    .light-mode-img {
+      display: block;
+    }
+  }
+}
+.change-mode {
+  position: relative;
+}
+.light-mode-img {
+  display: none;
+}
+.dark-mode-img, 
+.light-mode-img {
+  position: absolute;
+  top: -9px;
+  left: -15px;
+}
+//DARK MODE STYLES
+
+//COMMON STYLES
+
+//REGISTRATION FORM
+.form {
+  background-color: rgb(0, 70, 161);
+  h1 {
+    @include adaptiv-font(34, 22);
+    color: rgb(70, 70, 70);
+  }
+  &__inner {
+    @include adaptiv-value("padding", 80, 20, 0)
+  }
+  &__img-fon {
+    background-image: url(../img/foto.jpg);
+    background-position: 50% 50%;
+    background-size: cover;
+    max-width: 100%;
+    height: 100%;
+  }
+  &-row {
+    .form-group {
+      &:first-child {
+        padding-right: 10px;
+      }
+      &:last-child {
+        padding-left: 10px;
+      }
+    }
+  }
+  svg {
+    margin-bottom: 3px;
+  }
+  button, input {
+    @include adaptiv-font(22, 16);
+  }
+  button {
+    &:last-child {
+      background-color: rgb(0, 70, 161);
+      &:hover {
+        background-color: rgb(0, 41, 94);
+      }
+    }
+  }
+}
+@media (max-width:767px){
+  .form {
+    &-row {
+      .form-group {
+        &:first-child {
+          padding-right: 0;
+        }
+        &:last-child {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}
+//REGISTRATION FORM
+
+//ASIDE
+.aside {
+  background-color: rgb(0, 70, 161);
+  transition: all 0.3s;
+  a {
+    @include adaptiv-font(22, 16);
+    color: rgba(216, 216, 216, 0.897);
+    &:hover, &.active {
+      color: rgb(255, 255, 255);
+    }
+  }
+}
+//ASIDE
+
+//HEADER
+.header {
+  background-color: #f8f9fa;
+  &__search {
+    max-width: 50%;
+    input {
+      flex: 70%;
+      border-radius: 4px 0 0 4px;
+    }
+    button {
+      border-radius: 0 4px 4px 0;
+      background-color: rgb(0, 70, 161);
+      border: 1px solid rgb(0, 89, 206);
+      color: rgb(255, 255, 255);
+    }
+    .btn-outline-success:hover,
+    .btn-outline-success:not(:disabled):not(.disabled):active {
+      background-color: rgb(0, 89, 206);
+      border-color: rgb(0, 89, 206);
+    }
+    .btn-outline-success:focus,
+    .btn-outline-success:not(:disabled):not(.disabled):active:focus {
+      box-shadow: 0 0 0 0.2rem rgba(0, 89, 206, 0.726);
+    }
+  }
+  &__links {
+    max-width: 100%;
+    justify-content: end;
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+    }
+    li {
+      &:nth-child(2),
+      &:nth-child(3) {
+        a {
+          position: relative;
+          &:before {
+            content: '1';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 15px;
+            width: 20px;
+            background-color: rgb(255, 0, 0);
+            border-radius: 100%;
+            color: rgb(255, 255, 255);
+            font-size: 11px;
+            padding: 0 8px;
+          }
+        }
+      }
+    }
+  }
+  .navbar {
+    > .navbar-nav {
+      flex-direction: row;
+    }
+  }
+
+}
+@media (max-width:767px){
+  .header {
+    &__search {
+      max-width: 40%;
+      justify-content: end;
+      button {
+        background-color: transparent;
+        border: transparent;
+        color: rgb(0, 0, 0);
+        border-radius: 4px;
+      }
+    }
+    &__links {
+      max-width: 40%;
+      justify-content: start;
+    }
+  }
+}
+//HEADER
+
+//GOALS
+.goals {
+  .row {
+    > :nth-child(1) {
+      .goals__title {
+        color: rgb(70, 70, 255);
+      }
+    }
+    > :nth-child(2) {
+      .goals__title {
+        color: rgb(49, 151, 49);
+      }
+    }
+    > :nth-child(3) {
+      .goals__title {
+        color: rgb(40, 187, 187);
+      }
+    }
+    > :nth-child(4) {
+      .goals__title {
+        color: rgb(219, 161, 54);
+      }
+    }
+  }
+  &__item {
+    background-color: rgb(255, 255, 255);
+    border-radius: 6px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.705)
+  }
+  &__title {
+    @include adaptiv-font(20, 14);
+
+  }
+  &__text {
+    @include adaptiv-font(30, 22);
+  }
+  &__icon {
+    color: rgb(204, 204, 204);
+  }
+  .progress-bar {
+    background-color: rgb(40, 187, 187);
+  }
+}
+//GOALS
+
+//PROFILE
+.profile {
+  label {
+    @include adaptiv-font(20, 14);
+    font-weight: bold;
+    color: rgb(116, 116, 116);
+  }
+  input, button {
+    @include adaptiv-font(20, 14);
+  }
+  img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+  }
+}
+.blocks {
+  &__body {
+    background-color: rgb(255, 255, 255);
+    border-radius: 6px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.705)
+  }
+  &__title {
+    @include adaptiv-font(24, 16);
+    background-color: rgb(214, 214, 214);
+    border-radius: 6px 6px 0 0;
+    color: rgb(0, 70, 161);
+  }
+  label {
+    p {
+      &:first-child {
+        @include adaptiv-font(22, 16);
+      }
+      &:last-child {
+        @include adaptiv-font(20, 14);
+        color: rgb(116, 116, 116);
+      }
+    }
+  }
+  &__input {
+    input {
+      margin-top: -5px;
+      transform:scale(1.3);
+      cursor: pointer;
+    }
+  }
+}
+//PROFILE
