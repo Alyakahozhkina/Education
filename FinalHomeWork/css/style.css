@@ -1,0 +1,20 @@
+/*#8*/
+.eight-task {
+    display: flex;
+}
+.eight-task .block {
+    height: 200px;
+    width: 200px;
+    margin: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.green-bg {
+    background-color: green;
+}
+.red-bg {
+    background-color: red;
+}
+button {
+    cursor: pointer;
+}
